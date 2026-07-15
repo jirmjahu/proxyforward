@@ -3,20 +3,12 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
-  "description": "This is an example description! Tell everyone what your mod is about!",
-  "authors": [
-    "Me!"
-  ],
-  "contact": {
-    "homepage": "",
-    "sources": ""
-  },
+  "description": "BungeeCord/Velocity forwarding support for Fabric and NeoForge.",
   "license": "CC0-1.0",
-  "icon": "assets/proxyforward/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "de.proxyforward.ProxyForwardModFabric"
+      "net.proxyforward.ProxyForwardFabric"
     ]
   },
   "mixins": [

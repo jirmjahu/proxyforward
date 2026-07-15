@@ -7,10 +7,7 @@ loaderVersion="[1,)"
 modId = "${id}"
 displayName = "${name}"
 version = "${version}"
-authors = "Me!"
-description = "This is an example description! Tell everyone what your mod is about!"
-
-logoFile = "assets/proxyforward/icon.png"
+description = "BungeeCord/Velocity forwarding support for Fabric and NeoForge."
 
 [[mixins]]
 config = "proxyforward.mixins.json"
