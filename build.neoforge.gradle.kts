@@ -1,6 +1,7 @@
 plugins {
     id("net.neoforged.moddev") version "2.0.140"
     id("neoforge-mutex")
+    id("com.gradleup.shadow") version "9.5.1"
 }
 
 version = "${property("mod.version")}+${sc.current.version}"
@@ -56,6 +57,28 @@ java {
 }
 
 tasks {
+    shadowJar {
+        mergeServiceFiles()
+
+        dependencies {
+            include(dependency("tools.jackson.core:jackson-core"))
+            include(dependency("tools.jackson.core:jackson-databind"))
+            include(dependency("tools.jackson.dataformat:jackson-dataformat-toml"))
+            include(dependency("com.fasterxml.jackson.core:jackson-annotations"))
+        }
+    }
+
+    jar {
+        dependsOn(shadowJar)
+
+        from(zipTree(shadowJar.get().archiveFile)) {
+            exclude("net/minecraft/**")
+            exclude("com/mojang/**")
+            exclude("net/neoforged/**")
+        }
+
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
     processResources {
         fun MutableMap<String, String>.register(key: String, property: String) {
             val value: String = sc.properties[property]

@@ -2,7 +2,11 @@
   "required": true,
   "package": "net.proxyforward.mixin",
   "compatibilityLevel": "${java}",
-  "mixins": [],
+  "mixins": [
+    "accessors.ConnectionAccessor",
+    "ServerboundCustomQueryAnswerPacketMixin",
+    "ServerLoginPacketListenerImplMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

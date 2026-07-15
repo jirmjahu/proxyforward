@@ -13,6 +13,7 @@ public final class ProxyForward {
 
     private final Config config;
 
+    // todo: warn when using online mode, implement bungee forward, implement crossstitch, test older version
     public ProxyForward() {
         instance = this;
         this.config = ConfigLoader.load();
@@ -22,5 +23,9 @@ public final class ProxyForward {
 
     public static ProxyForward instance() {
         return instance;
+    }
+
+    public Config config() {
+        return config;
     }
 }

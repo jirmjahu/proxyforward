@@ -1,5 +1,6 @@
 plugins {
     id("dev.kikugie.loom-back-compat")
+    id("com.gradleup.shadow") version "9.5.1"
 }
 
 version = "${property("mod.version")}+${sc.current.version}"
@@ -64,6 +65,19 @@ java {
 }
 
 tasks {
+    shadowJar {
+        dependencies {
+            include(dependency("tools.jackson.core:jackson-core"))
+            include(dependency("tools.jackson.core:jackson-databind"))
+            include(dependency("tools.jackson.dataformat:jackson-dataformat-toml"))
+            include(dependency("com.fasterxml.jackson.core:jackson-annotations"))
+        }
+    }
+    jar {
+        dependsOn(shadowJar)
+        from(zipTree(shadowJar.get().archiveFile))
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
     processResources {
         fun MutableMap<String, String>.register(key: String, property: String) {
             val value: String = sc.properties[property]
