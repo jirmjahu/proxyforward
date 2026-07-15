@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "de.proxyforward.mixin",
+  "compatibilityLevel": "${java}",
+  "mixins": [
+    "ExampleMixin",
+    "MinecraftMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
