@@ -1,0 +1,5 @@
+# "bungee" or "velocity" (use "bungee" for velocity legacy forwarding)
+forwarding_mode = "bungee"
+
+# Only needed when forwarding_mode = "velocity"
+velocity_secret = ""

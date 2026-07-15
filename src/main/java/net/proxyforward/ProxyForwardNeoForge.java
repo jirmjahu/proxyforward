@@ -8,6 +8,7 @@ import net.neoforged.fml.common.Mod;
 @Mod("proxyforward")
 public final class ProxyForwardNeoForge {
     public ProxyForwardNeoForge(IEventBus modEventBus, ModContainer modContainer) {
+        new ProxyForward();
     }
 }
 *///?}

@@ -20,7 +20,11 @@ repositories {
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
 }
 
-dependencies {}
+dependencies {
+    implementation(libs.jackson.core)
+    implementation(libs.jackson.databind)
+    implementation(libs.jackson.toml)
+}
 
 neoForge {
     version = property("deps.neo_loader") as String
