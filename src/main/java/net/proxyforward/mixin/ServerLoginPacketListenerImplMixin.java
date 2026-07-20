@@ -15,6 +15,7 @@ import net.minecraft.server.network.ServerLoginPacketListenerImpl;
 import net.proxyforward.ProxyForward;
 import net.proxyforward.config.Config;
 import net.proxyforward.mixin.accessors.ConnectionAccessor;
+import net.proxyforward.proxy.BungeeProxy;
 import net.proxyforward.proxy.VelocityProxy;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
@@ -53,11 +54,21 @@ public abstract class ServerLoginPacketListenerImplMixin {
     @Shadow
     protected abstract void startClientVerification(GameProfile profile);
 
+    @Inject(at = @At("TAIL"), method = "startClientVerification")
+    private void proxyforward$startClientVerification(CallbackInfo ci) {
+        final GameProfile profile = BungeeProxy.applyForwardedData(connection, authenticatedProfile.name());
+
+        if (profile != null) {
+            this.authenticatedProfile = profile;
+            LOGGER.info("UUID of player {} is {}", authenticatedProfile.name(), authenticatedProfile.id());
+        }
+    }
+
     @Inject(method = "handleHello", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginPacketListenerImpl;startClientVerification(Lcom/mojang/authlib/GameProfile;)V"), cancellable = true)
     private void proxyforward$handleHello(ServerboundHelloPacket packet, CallbackInfo ci) {
         final Config config = ProxyForward.instance().config();
 
-        if (!config.velocity()|| config.velocitySecret() == null || config.velocitySecret().isEmpty()) {
+        if (!config.velocity() || config.velocitySecret() == null || config.velocitySecret().isEmpty()) {
             return;
         }
 

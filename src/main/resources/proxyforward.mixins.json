@@ -4,8 +4,11 @@
   "compatibilityLevel": "${java}",
   "mixins": [
     "accessors.ConnectionAccessor",
+    "accessors.ClientIntentionPacketAccessor",
     "ServerboundCustomQueryAnswerPacketMixin",
-    "ServerLoginPacketListenerImplMixin"
+    "ServerLoginPacketListenerImplMixin",
+    "ClientIntentionPacketMixin",
+    "ServerHandshakePacketListenerImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1
