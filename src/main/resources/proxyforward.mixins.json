@@ -3,12 +3,13 @@
   "package": "net.proxyforward.mixin",
   "compatibilityLevel": "${java}",
   "mixins": [
-    "accessors.ConnectionAccessor",
-    "accessors.ClientIntentionPacketAccessor",
-    "ServerboundCustomQueryAnswerPacketMixin",
-    "ServerLoginPacketListenerImplMixin",
     "ClientIntentionPacketMixin",
-    "ServerHandshakePacketListenerImplMixin"
+    "MinecraftServerMixin",
+    "ServerboundCustomQueryAnswerPacketMixin",
+    "ServerHandshakePacketListenerImplMixin",
+    "ServerLoginPacketListenerImplMixin",
+    "accessors.ClientIntentionPacketAccessor",
+    "accessors.ConnectionAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
