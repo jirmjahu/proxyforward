@@ -60,6 +60,10 @@ tasks {
     shadowJar {
         mergeServiceFiles()
 
+        exclude("META-INF/services/net.neoforged.fml.IBindingsProvider")
+        exclude("META-INF/services/net.neoforged.fml.startup.JUnitGameBootstrapper")
+        exclude("mcp/client/Start.class")
+
         dependencies {
             include(dependency("tools.jackson.core:jackson-core"))
             include(dependency("tools.jackson.core:jackson-databind"))
