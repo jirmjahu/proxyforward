@@ -7,6 +7,7 @@ BungeeCord & Velocity (modern) forwarding for Fabric and NeoForge servers.
 - 1.21.11
 - 26.1.2
 - 26.2.x
+- 26.3.x
 
 ## Installation
 
